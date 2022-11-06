@@ -1,0 +1,22 @@
+.list {
+  display: flex;
+}
+
+.list .list-item {
+  & > :hover {
+    border-bottom: 1px solid #5ECE7B;
+    color: #5ECE7B;
+
+  }
+
+  &__content {
+    padding: 2rem 1rem;
+    background: var(--bg-primary);
+    border: none;
+  }
+
+}
+
+// TODO: fix the dancing buttons
+// give font size to the text
+// 

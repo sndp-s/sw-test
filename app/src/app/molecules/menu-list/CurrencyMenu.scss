@@ -1,0 +1,18 @@
+.dd-head {
+  border: none;
+  background: var(--bg-primary)
+}
+
+.dd-menu {
+  background: var(--bg-primary);
+  box-shadow: 1px 1px 5px 1px rgba(1, 1, 1, 0.1);
+
+  &__item {
+    padding: 4px 8px;
+    cursor: pointer
+  }
+
+  &__item:hover {
+    background: #EEEEEE;
+  }
+}

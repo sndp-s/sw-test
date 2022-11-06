@@ -1,0 +1,23 @@
+@use '../../../index.scss';
+
+.header {
+  background: var(--bg-primary);
+  position: Fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  &__content-wrapper {
+    display: flex;
+    // TODO:FIX do the this properly 
+    // --split the space in 3 with flex properties to appropriately divide the space
+    justify-content: space-between;
+    align-items: center;
+    
+    & > * { block-size: fit-content; } 
+  }
+}
+
+.navbar-offset {
+  height: 5em;
+}

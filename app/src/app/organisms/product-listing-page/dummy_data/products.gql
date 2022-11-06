@@ -1,0 +1,20 @@
+{
+  category(input: { title: "all" }) {
+    products {
+      id
+      name
+      brand
+      inStock
+      gallery
+      prices {
+        currency {
+          symbol
+        }
+        amount
+      }
+    }
+  }
+}
+
+# take 'category name' as input
+# returns asked details of produts products in the given category

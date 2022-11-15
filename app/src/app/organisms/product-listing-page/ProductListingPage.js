@@ -1,32 +1,73 @@
 import React from 'react';
-
-import Grid from '../../atoms/grid/Grid';
-import ProductListing from '../../molecules/product-listing/ProductListing';
-
+import ProductGrid from '../../molecules/product-listing/ProductGrid';
+import { withRouter } from 'react-router-dom';
 import { withCurrency } from '../../state/providers/CurrencyProvider';
 import { withCategory } from '../../state/providers/CategoryProvider';
 
-import PLPContext from '../../state/contexts/PLPContext';
-import products__all from './dummy_data/products__all.json';
-
-
 class ProductListingPage extends React.Component {
-  static contextType = PLPContext;
+
+  constructor() {
+    super();
+    this.checkPathAndUpdateCategory = this.checkPathAndUpdateCategory.bind(this);
+  }
+
+  checkPathAndUpdateCategory = async (location) => {
+    // When at root
+    if (location.pathname === '/') {
+      if (this.props.categoryContext.categories) {
+        const first = this.props.categoryContext.categories[0];
+        this.props.categoryContext.changeCurrentCategory(first.name);
+      }
+      return;
+    }
+
+    // When at other paths (!root)
+    const resources = location.pathname.split('/')
+    if (resources[0] === '') resources.shift();
+    const queriedCategory = resources[1];
+    this.props.categoryContext.changeCurrentCategory(queriedCategory);
+  }
+
+  componentDidMount() {
+    // Update current category on mount
+    this.checkPathAndUpdateCategory(this.props.location);
+    
+    // Update current category on URL change
+    const locationChangeHandler = (location, action) => {
+      this.checkPathAndUpdateCategory(location);
+    }
+    this.unlisten = this.props.history.listen(locationChangeHandler);
+  }
+
+  componentWillUnmount() {
+    // Remove the URL change listener
+    this.unlisten();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { categoryContext, location } = this.props;
+    const { categoryContext: prevCategoryContext } = prevProps;
+    
+    // Update current category on categories change
+    if (categoryContext.categories !== prevCategoryContext.categories) {
+      this.checkPathAndUpdateCategory(location);
+    }
+  }
+
   render() {
-    // const { products } = this.props
-    console.log('PLP context :: ', this.props);
-    const { products } = products__all.data.category;
+    if (this.props.categoryContext.current === null) return <p>Nothing to show...</p>
+
     return (
       <div>
-        <h1>Category name</h1>
-        <Grid>
-          {products ? (
-            products.map((p) => <ProductListing product={p}/>)
-          ) : null}
-        </Grid>
+        <h1>
+          {this.props.categoryContext.current}
+        </h1>
+          <ProductGrid category={this.props.categoryContext.current}/>
       </div>
     )
   }
 }
 
-export default withCategory(withCurrency(ProductListingPage));
+const withData = (x) => (withCategory(withCurrency(x)));
+export default withRouter(withData(ProductListingPage));
+

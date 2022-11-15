@@ -17,6 +17,12 @@ class CurrencyMenu extends React.Component {
     }
   }
 
+  componentDidMount() {
+    if (!this.context.currencies) {
+      this.context.loadCurrencies();
+    }
+  }
+
   onClose(e) {
     this.setState({
       isOpen: false
@@ -36,6 +42,9 @@ class CurrencyMenu extends React.Component {
   
   render() {
     const { currencies, current } = this.context;
+
+    if (!currencies) return <div/>;
+
     return (
       <Dropdown
         isOpen={this.state.isOpen}

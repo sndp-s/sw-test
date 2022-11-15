@@ -4,16 +4,19 @@ import './index.scss';
 import App from './App';
 import CurrencyProvider from './app/state/providers/CurrencyProvider';
 import CategoryProvider from './app/state/providers/CategoryProvider';
+import ProductProvider from './app/state/providers/ProductProvider';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <CategoryProvider>
-      <CurrencyProvider>
-        <App />
-      </CurrencyProvider>
-    </CategoryProvider>
+    <ProductProvider>
+      <CategoryProvider>
+        <CurrencyProvider>
+          <App />
+        </CurrencyProvider>
+      </CategoryProvider>
+    </ProductProvider>
   </React.StrictMode>
 );
 

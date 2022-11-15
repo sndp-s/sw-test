@@ -1,41 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CurrencyContext from '../../state/contexts/CurrencyContext';
 
 import './ProductListing.scss';
 
-class ProductListing extends React.Component {
-  constructor() {
-    super();
-    
-    this.getPrice = this.getPrice.bind(this);
-    this.renderPrice = this.renderPrice.bind(this);
-    this.state = {
-      currenctCurrency: {
-        "label": "USD",
-        "symbol": "$",
-      },
+
+class Price extends React.Component {
+  static contextType = CurrencyContext;
+
+  componentDidMount() {
+    if (!this.context.currencies) {
+      this.context.loadCurrencies();
     }
   }
   
-  getPrice(prices) {
-    const _price = prices.find((p) => p.currency.label === this.state.currenctCurrency.label)
-    return _price ?? null;
-  }
+  render() {
+    const { currencies, current } = this.context;
+    const { prices } = this.props;
 
-  renderPrice(prices) {
-    const price = this.getPrice(prices)
-    if (!price) return null;
+    if (!currencies || !current || !prices) return <div />;
+    
+    const price = prices.find((p) => (p.currency.label === current.label));
+
+    if (!price) return <div />;
+
     return (
-      <div>
+      <div className='listing__price'>
         <span>{price.currency.symbol}</span>
         <span>{price.amount}</span>
       </div>
     );
   }
+}
 
+class ProductListing extends React.Component {
   render() {
     const { product } = this.props;
-
     return (
       <div className='listing'>
         <div className='listing__img-wrapper'>
@@ -44,9 +44,7 @@ class ProductListing extends React.Component {
         <div className='listing__add-to-card-btn'></div>
         <div className='listing__details'>
           <div className='listing__name'>{product.name}</div>
-          <div className='listing__price'>
-            {this.renderPrice(product.prices)}
-          </div>
+          <Price prices={product.prices} />
         </div>
       </div>
     )
@@ -62,10 +60,3 @@ class ProductListing extends React.Component {
 // }
 
 export default ProductListing;
-// :: DATA ::
-// - gallery[0]
-// - details
-//     - name
-// - price
-//    - symbol
-//    - amount

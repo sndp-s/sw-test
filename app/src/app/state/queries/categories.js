@@ -9,3 +9,13 @@ export const getCategoriesQuery = () => {
   }`;
   return query;
 }
+
+export const getCategoryNameQuery = (category) => {
+  if (!category) return null;
+
+  return gql`{
+    category(input: { title: "${category}"}) {
+      name
+    }
+  }`;
+}

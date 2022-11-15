@@ -7,8 +7,9 @@ class CurrencyProvider extends React.Component {
   constructor() {
     super();
     this.changeCurrentCurrency = this.changeCurrentCurrency.bind(this);
+    this.loadCurrencies = this.loadCurrencies.bind(this);
     this.state = {
-      currencies: [],
+      currencies: null,
       current: null,
     }
   }
@@ -17,7 +18,7 @@ class CurrencyProvider extends React.Component {
     this.setState((_state) => ({ ..._state, current: currency }))
   }
 
-  async componentDidMount() {
+  async loadCurrencies() {
     const query = getCurrenciesQuery();
     try {
       const response = await client.query({ query });
@@ -32,7 +33,11 @@ class CurrencyProvider extends React.Component {
   }
 
   render() {
-    const value = {...this.state, changeCurrentCurrency: this.changeCurrentCurrency};
+    const value = {
+      ...this.state,
+      changeCurrentCurrency: this.changeCurrentCurrency,
+      loadCurrencies: this.loadCurrencies,
+    };
     return (
       <CurrencyContext.Provider value={value}>
         {this.props.children}

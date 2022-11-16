@@ -3,12 +3,17 @@
   padding: 1rem;
   background: var(--bg-primary);
   cursor: pointer;
+  position: relative;
 
   &:hover {
     box-shadow: 1px 1px 30px 10px rgba(1, 1, 1, 0.1);
   }
 
-  &__img-wrapper {
+  &--out-of-stock {
+    user-select: none;
+  }
+
+  & > .img-wrapper {
     border:1px solid red;
     background: var(--bg-primary);
     overflow: hidden;
@@ -23,5 +28,29 @@
       width: 100%;
       object-fit: contain;
     }
+  }
+
+  & > .out-of-stock-modal {
+    position: absolute;
+    background: red;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+.add-to-cart {
+  background: #5ECE7B;
+  border: none;
+
+  &__image {
+    width: 24px;
+    height: 24px;
   }
 }

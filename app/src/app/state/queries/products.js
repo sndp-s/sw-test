@@ -11,6 +11,16 @@ export const getProductsQueryFor = (category) => {
         brand
         inStock
         gallery
+        attributes {
+            id
+            name
+            type
+            items {
+              displayValue
+              value
+              id
+            }
+          }
         prices {
           currency {
             label

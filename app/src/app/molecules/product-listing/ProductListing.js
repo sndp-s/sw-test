@@ -1,31 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CurrencyContext from '../../state/contexts/CurrencyContext';
+import CartContext from '../../state/contexts/CartContext';
 import emptyCart from '../../../assets/empty-cart.svg';
 
 import './ProductListing.scss';
 
 
 class AddToCart extends React.Component {
+  static contextType = CartContext;
   
   constructor() {
     super();
-
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 
-  handleOnClick = (product) => {
+  handleOnClick = ({ id, attributes }) => {
     
-    const cartItem = product.attributes.map((attribute) => {
-      const choosenAttribute = { ...attribute };
-      delete choosenAttribute.items;
-      choosenAttribute.item = attribute.items[0];
-      return choosenAttribute;
+    const chooseAttributes = attributes.map((a) => {
+      const _a = { ...a };
+      delete _a.items;
+      _a.item = a.items[0];
+      return _a;
     })
-
-    // RESUME HERE 
-    // the cardItem is prepared above
-    // add it to the cartProvider
+    
+    const cartItem = { id, attributes: chooseAttributes };
+    this.context.addToCart(cartItem);
   }
 
   render() {
@@ -34,12 +34,12 @@ class AddToCart extends React.Component {
       <button
         className="add-to-cart"
         onClick = {(evt) => { this.handleOnClick(product); }}
-      >
+        >
         <img
           src={emptyCart}
           alt="add to cart button"
           className="add-to-cart__image"
-        />
+          />
       </button>
     )
   }

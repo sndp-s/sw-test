@@ -4,6 +4,7 @@ import './App.scss';
 
 import Header from './app/organisms/header/Header';
 import ProductListingPage from './app/organisms/product-listing-page/ProductListingPage';
+import ProductDisplayPage from './app/organisms/product-display-page/ProductDisplayPage';
 
 class App extends React.Component {
   render() {
@@ -24,13 +25,13 @@ class App extends React.Component {
             <div className='page--container'>
               <Switch>
                 <Route path='/' exact>
-                  {<ProductListingPage />}
+                  {<ProductListingPage/>}
                 </Route>
                 <Route path='/category/:categoryName' exact>
-                  {<ProductListingPage />}
+                  {<ProductListingPage/>}
                 </Route>
-                <Route path='/catgory/product' exact>
-                  {<div>/category/product</div>}
+                <Route path='/product/:productId' exact>
+                  {<ProductDisplayPage/>}
                 </Route>
               </Switch>
             </div>

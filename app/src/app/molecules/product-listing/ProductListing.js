@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CurrencyContext from '../../state/contexts/CurrencyContext';
 import CartContext from '../../state/contexts/CartContext';
 import emptyCart from '../../../assets/empty-cart.svg';
+import Price from '../../atoms/Price/Price';
+import { withRouter } from 'react-router-dom';
 
 import './ProductListing.scss';
 
@@ -16,7 +17,6 @@ class AddToCart extends React.Component {
   }
 
   handleOnClick = ({ id, attributes }) => {
-    
     const chooseAttributes = attributes.map((a) => {
       const _a = { ...a };
       delete _a.items;
@@ -25,7 +25,7 @@ class AddToCart extends React.Component {
     })
     
     const cartItem = { id, attributes: chooseAttributes };
-    this.context.addToCart(cartItem);
+    this.context.add(cartItem);
   }
 
   render() {
@@ -45,41 +45,16 @@ class AddToCart extends React.Component {
   }
 }
 
-class Price extends React.Component {
-  static contextType = CurrencyContext;
-
-  componentDidMount() {
-    if (!this.context.currencies) {
-      this.context.loadCurrencies();
-    }
-  }
-  
-  render() {
-    const { currencies, current } = this.context;
-    const { prices } = this.props;
-
-    if (!currencies || !current || !prices) return <div />;
-    
-    const price = prices.find((p) => (p.currency.label === current.label));
-
-    if (!price) return <div />;
-
-    return (
-      <div className='listing__price'>
-        <span>{price.currency.symbol}</span>
-        <span>{price.amount}</span>
-      </div>
-    );
-  }
-}
-
 class ProductListing extends React.Component {
   render() {
     const { product } = this.props;
     return (
-      <div className={['listing',
-        (!product.inStock ? 'listing--out-of-stock' : '')].join(' ')
-      }>
+      <div
+        className={['listing', (!product.inStock ? 'listing--out-of-stock' : '')].join(' ')}
+        onClick={(ev) => {
+          this.props.history.push('/product/' + product.id)
+        }}
+      >
         <div className='img-wrapper'>
           <img src={product.gallery[0]} alt={product.name} />
         </div>
@@ -89,7 +64,7 @@ class ProductListing extends React.Component {
           </div>
         )}
         <div className='details'>
-          <div className='details__name'>{product.name}</div>
+          <div className='details__name'>{product.brand}{' '}{product.name}</div>
           <Price prices={product.prices} />
         </div>
         {!product.inStock && (
@@ -110,4 +85,4 @@ class ProductListing extends React.Component {
 //   }),
 // }
 
-export default ProductListing;
+export default withRouter(ProductListing);

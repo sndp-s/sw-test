@@ -1,0 +1,34 @@
+.cart-item {
+  border: 1px solid blue;
+  width: 100%;
+  height: 190px;
+  display: flex;
+
+  .lefthand-side {
+    flex: 1;
+    margin-right: 8px;
+  }
+
+  .middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .righthand-side {
+    border: 1px solid green;
+    width: 121px;
+    height: 190px;
+    display: flex;
+    align-items: center;
+    > img {
+      border: 1px solid greenyellow;
+      height: auto;
+      width: 100%;
+      max-width: 121px;
+      object-fit: contain;
+    }
+
+  }
+}

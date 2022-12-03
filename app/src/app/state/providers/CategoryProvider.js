@@ -23,11 +23,11 @@ class CategoryProvider extends React.Component {
     const query = getCategoryNameQuery(category);
     
     try {
-      const response = await client.query({ query });
+      const response = await client.request(query);
     
       this.setState((_state) => ({
         ..._state,
-        current: (response.data.category?.name) ?? null,
+        current: (response.category?.name) ?? null,
       }));
     
     } catch (error) {
@@ -52,11 +52,11 @@ class CategoryProvider extends React.Component {
     const query = getCategoriesQuery();
     
     try {
-      const response = await client.query({ query });
+      const response = await client.request(query);
     
       this.setState((_state) => ({
         ..._state,
-        categories: (response.data.categories) ?? null,
+        categories: (response.categories) ?? null,
         loading: false,
       }));
 

@@ -20,9 +20,10 @@ class ProductGrid extends React.Component {
   async fetchProducts(category) {
     const query = getProductsQueryFor(category);
     try {
-      const response = await client.query({ query });
+      // const response = await client.query({ query });
+      const response = await client.request(query);
       this.setState({
-        products: (response.data.category?.products) ?? null,
+        products: (response.category?.products) ?? null,
       });
     } catch (error) {
       console.error('ERROR :: failed to fetch \'products\' ::');

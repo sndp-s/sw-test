@@ -21,10 +21,10 @@ class CurrencyProvider extends React.Component {
   async loadCurrencies() {
     const query = getCurrenciesQuery();
     try {
-      const response = await client.query({ query });
+      const response = await client.request(query);
       this.setState({
-        currencies: response.data.currencies,
-        current: response.data.currencies[0],
+        currencies: response.currencies,
+        current: response.currencies[0],
       });
     } catch (error) {
       console.error('ERROR :: failed to fetch \'currencies\' ::');

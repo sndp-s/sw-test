@@ -10,7 +10,7 @@ class MenuList extends React.Component {
     return (
       <div className='list'>
         <CurrencyMenu />
-        {/* <CartMenu /> */}
+        <CartMenu />
       </div>
     );
   }

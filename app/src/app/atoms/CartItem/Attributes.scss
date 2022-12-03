@@ -1,0 +1,31 @@
+.attributes {
+  border: 1px solid black;
+}
+
+.attribute {
+  margin-bottom: 8px;
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+  };
+}
+
+
+.item {
+  border: 1px solid black;
+  margin-right: 8px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &--chosen-text {
+    background: black;
+    color: white;
+  }
+}

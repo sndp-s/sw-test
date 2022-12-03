@@ -1,4 +1,5 @@
-import { gql } from '@apollo/client';
+import { gql } from 'graphql-request';
+
 
 export const getProductsQueryFor = (category) => {
   const query = gql`
@@ -33,4 +34,35 @@ export const getProductsQueryFor = (category) => {
   }`;
   
   return query;
+}
+
+export const getProductQueryFor = (productId) => {
+  return gql`
+  {
+    product(id: "${productId}") {
+      attributes {
+        id
+        name
+        type
+        items {
+          displayValue
+          value
+          id
+        }
+      }
+      id
+      name
+      brand
+      description
+      inStock
+      gallery
+      prices {
+        currency {
+          symbol
+          label
+        }
+        amount
+      }
+    }
+  }`
 }

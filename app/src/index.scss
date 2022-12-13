@@ -10,9 +10,6 @@ html { font-size: 16px }
 :root {
   --navbar-offset: 5rem;
   --max-page-width: 1240px;
-
-  // background colors
-  --bg-primary: #FFFFFF;
   
   .container {
     max-width: var(--max-page-width);
@@ -23,4 +20,22 @@ html { font-size: 16px }
     @extend .container;
     padding-top: var(--navbar-offset);
   }
+
+  // font size
+  --fs-xs: 14px; 
+  --fs-s: 16px; 
+  --fs-m: 18px; 
+  --fs-l: 24px;
+  --fs-xl: 30px;
+
+  // font weight
+  --fw-b: 700;
+
+  // colors
+  --black: #1D1F22;
+  --white: #FFFFFF;
+  --green: #5ECE7B;
+
+  // defaults
+  color: var(--black);
 }

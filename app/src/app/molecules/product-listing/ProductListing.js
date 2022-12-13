@@ -34,12 +34,12 @@ class AddToCart extends React.Component {
       <button
         className="add-to-cart"
         onClick = {(evt) => { this.handleOnClick(product); }}
-        >
+      >
         <img
           src={emptyCart}
           alt="add to cart button"
           className="add-to-cart__image"
-          />
+        />
       </button>
     )
   }

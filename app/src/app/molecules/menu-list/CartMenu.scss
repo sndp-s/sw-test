@@ -1,7 +1,7 @@
-.head { display: flex;  border: none; background: var(--bg-primary); }
+.head { display: flex;  border: none; background: var(--white); }
 
 .menu {
-  background: var(--bg-primary);
+  background: var(--white);
   width: 339px;
   height: 677px;
   padding: 32px 16px;
@@ -14,5 +14,4 @@
   .product-list {
     height: 420px;
   }
-
 }

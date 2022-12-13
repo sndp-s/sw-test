@@ -1,0 +1,13 @@
+.total {
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    font-weight: var(--fw-b);
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}

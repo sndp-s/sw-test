@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CurrencyContext from '../../state/contexts/CurrencyContext';
-
+import Text from '../Text/Text';
 
 class Price extends React.Component {
   static contextType = CurrencyContext;
@@ -13,7 +14,7 @@ class Price extends React.Component {
   
   render() {
     const { currencies, current } = this.context;
-    const { prices } = this.props;
+    const { prices, size } = this.props;
 
     if (!currencies || !current || !prices) return <div />;
     
@@ -22,12 +23,29 @@ class Price extends React.Component {
     if (!price) return <div />;
 
     return (
-      <div className='price'>
-        <span>{price.currency.symbol}</span>
-        <span>{price.amount}</span>
-      </div>
+      <Text size={size}>
+        <Text span size={size}>{price.currency.symbol}</Text>
+        <Text span size={size}>{price.amount}</Text>
+      </Text>
     );
   }
+}
+
+Price.defaultProps = {
+  size: 'm',
+}
+
+Price.propTypes = {
+  prices: PropTypes.arrayOf(
+    PropTypes.shape({
+      currency: PropTypes.shape({
+        label: PropTypes.string,
+        symbol: PropTypes.string,
+      }),
+      amount: PropTypes.number,
+    })
+  ).isRequired,
+  size: PropTypes.oneOf(['m', 'l'])
 }
 
 export default Price;

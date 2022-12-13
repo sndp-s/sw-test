@@ -24,8 +24,30 @@
     margin-right: 0;
   }
 
-  &--chosen-text {
-    background: black;
-    color: white;
+  &--text {
+    padding: 0 2px;
   }
+
+  &--text--chosen {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  &--swatch {
+    &--s {
+      width: 16px;
+      height: 16px;
+      aspect-ratio: 1/1;
+    }
+
+    &--m {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  &--swatch--chosen {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 2px var(--green);
+  }
+
 }

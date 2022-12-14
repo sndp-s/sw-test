@@ -3,6 +3,7 @@ import ProductGrid from '../../molecules/product-listing/ProductGrid';
 import { withRouter } from 'react-router-dom';
 import { withCurrency } from '../../state/providers/CurrencyProvider';
 import { withCategory } from '../../state/providers/CategoryProvider';
+import Text from '../../atoms/Text/Text';
 
 class ProductListingPage extends React.Component {
 
@@ -55,13 +56,11 @@ class ProductListingPage extends React.Component {
   }
 
   render() {
-    if (this.props.categoryContext.current === null) return <p>Nothing to show...</p>
+    if (this.props.categoryContext.current === null) return <Text>Nothing to show...</Text>
 
     return (
       <div>
-        <h1>
-          {this.props.categoryContext.current}
-        </h1>
+          <Text variant='h1' size='xl'>{this.props.categoryContext.current}</Text>
           <ProductGrid category={this.props.categoryContext.current}/>
       </div>
     )

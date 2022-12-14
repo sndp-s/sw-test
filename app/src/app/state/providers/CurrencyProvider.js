@@ -32,6 +32,8 @@ class CurrencyProvider extends React.Component {
     }
   }
 
+  componentDidMount() { this.loadCurrencies(); }
+
   render() {
     const value = {
       ...this.state,

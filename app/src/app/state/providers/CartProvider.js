@@ -24,15 +24,10 @@ class CartProvider extends React.Component {
     return true;
   };
   
-  checkAttributesMatch(p1, p2) {
-    const p1Attributes = p1.attributes;
-    const p2Attributes = p2.attributes;
-    
-    if (p1Attributes.length !== p2Attributes.length) {
-      return false;
-    }
+  checkAttributesMatch(p1Attributes, p2Attributes) {
+    if (p1Attributes.length !== p2Attributes.length) return false;
 
-    for (let i = 0; i < p1.length; i++) {
+    for (let i = 0; i < p1Attributes.length; i++) {
       const toCheckP1Attribute = p1Attributes[i];
       const toCheckP2Attribute = p2Attributes.find((p2Attribute) => (
         p2Attribute.id === toCheckP1Attribute.id
@@ -59,7 +54,7 @@ class CartProvider extends React.Component {
         if (!doProductIdsMatch) return false;
 
         // Check if Attributes match
-        const attributesMatchFlag = this.checkAttributesMatch(cartItem, _normalisedCartItem);
+        const attributesMatchFlag = this.checkAttributesMatch(cartItem.attributes, _normalisedCartItem.attributes);
         if(!attributesMatchFlag) return false;
 
         return true;
@@ -75,10 +70,10 @@ class CartProvider extends React.Component {
       }
     });
 
-    this.setState((_state) => ({
-      cart: _state.cart,
+    this.setState({
+      cart: cart,
       normalisedCart: _normalisedCart,
-    }));
+    });
   }
 
   add(product) {
@@ -117,10 +112,7 @@ class CartProvider extends React.Component {
     }
   }
 
-  // async componentDidMount() { console.log('INFO :: CART Mounted :: ', this.state); }
-
-  async componentDidUpdate(prevProps, prevState) {
-    console.log('INFO :: CART UPDATED :: ', this.state);
+  componentDidUpdate(prevProps, prevState) {
     if (prevState.cart.length !== this.state.cart.length) {
       this.normaliseCart();
     }

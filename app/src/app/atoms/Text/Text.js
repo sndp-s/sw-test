@@ -34,7 +34,7 @@ Text.defaultProps = {
 }
 
 Text.propTypes = {
-  chidren: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
   variant: PropTypes.oneOf(['h1', 'h2', 'h3', 'p']),
   className: PropTypes.string,
   size: PropTypes.oneOf(['xs', 's', 'm', 'l', 'xl']),

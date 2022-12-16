@@ -8,16 +8,15 @@ import client from "../../client";
 import { withCart } from "../../state/providers/CartProvider";
 import { withCurrency } from "../../state/providers/CurrencyProvider";
 import { getProductQueryFor } from '../../state/queries/products';
+import { TAX_PERCENT } from '../../../constants';
 
 class CartPage extends React.Component {
   constructor() {
     super();
     this.fetchProduct = this.fetchProduct.bind(this);
     this.udpateCartItems = this.udpateCartItems.bind(this);
-    this.getTotal = this.getTotal.bind(this);
-    this.state = {
-      products: {},
-    }
+    this.getSumTotal = this.getSumTotal.bind(this);
+    this.state = { products: {} };
   }
 
   async fetchProduct(productId) {
@@ -42,21 +41,17 @@ class CartPage extends React.Component {
     })
   }
 
-  getTotal(items, products, currentCurrencyDetails) {
-    if (!currentCurrencyDetails) return '';
-
+  getSumTotal(items, products, currentCurrencyDetails) {
     let totalAmount = 0;
-    let currencySymbol = '';
-  
-    // Set current symbol
-    currencySymbol = currentCurrencyDetails.symbol;
 
-    // Set current amount
+    if (!currentCurrencyDetails) return totalAmount;
+
     function getPriceInCurrentCurrency(prices, currentCurrencyDetails) {
       const _priceInCurrentFormat = prices.filter((price) => price.currency.label === currentCurrencyDetails.label);
       return _priceInCurrentFormat[0];
     }
-    
+
+    // Calculate the sum
     for(let i = 0; i < items.length; i++) {
       const item = items[i];
       const product = products[item.id];
@@ -69,25 +64,42 @@ class CartPage extends React.Component {
       totalAmount = Math.round(totalAmount * 100)/100;
     }
     
-    return `${currencySymbol}${totalAmount}`;
+    return totalAmount;
+  }
+
+  getTaxAmount(total, taxPercent) {
+    const taxAmount = ( taxPercent * total ) / 100;
+    return Math.round(taxAmount * 100)/100;
   }
 
   componentDidMount() {
     this.udpateCartItems(this.props.normalisedCart);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { cart, normalisedCart } = this.props;
     const { cart: prevCart } = prevProps;
 
-    if(cart.length !== prevCart.length) {
+    if (cart.length !== prevCart.length) {
       this.udpateCartItems(normalisedCart);
+    }
+
+    const { products } = this.state;
+    const { products: prevProducts } = prevState;
+
+    if (products !== prevProducts) {
+      console.log('state.products changed');
     }
   }
 
   render() {
     const { cart, normalisedCart, currencyContext } = this.props;
     const { products } = this.state;
+
+    const sumTotal = this.getSumTotal(normalisedCart, products, currencyContext.current);
+    const taxAmount = this.getTaxAmount(sumTotal, TAX_PERCENT);
+    const finalAmount = sumTotal + taxAmount;
+
     return(
       <div>
         <Text variant='h1' size='xl'>CART</Text>
@@ -112,16 +124,20 @@ class CartPage extends React.Component {
           <table>
             <tbody>
               <tr>
-                <td><Text span>Tax 21%</Text></td>
-                <td><Text span>$42.00</Text></td>
+                <td><Text span>Tax {TAX_PERCENT}%</Text></td>
+                <td><Text span>{currencyContext.current?.symbol}{taxAmount}</Text></td>
               </tr>
               <tr>
                 <td><Text span>Quantity</Text></td>
-                <td><Text span>4</Text></td>
+                <td><Text span>{cart.length}</Text></td>
               </tr>
               <tr>
                 <td><Text span>Total</Text></td>
-                <td><Text span>$432.00</Text></td>
+                <td>
+                  <Text span>
+                    {currencyContext.current?.symbol}{finalAmount}
+                  </Text>
+                </td>
               </tr>
             </tbody>
           </table>

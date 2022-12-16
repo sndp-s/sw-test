@@ -7,13 +7,14 @@ import { withRouter } from "react-router-dom";
 import { withCart } from "../../state/providers/CartProvider";
 import { withCurrency } from "../../state/providers/CurrencyProvider";
 import { getProductQueryFor } from '../../state/queries/products';
+import { TAX_PERCENT } from '../../../constants';
 
 class Menu extends React.Component {
   constructor() {
     super();
     this.fetchProduct = this.fetchProduct.bind(this);
     this.udpateCartItems = this.udpateCartItems.bind(this);
-    this.getTotal = this.getTotal.bind(this);
+    this.getSumTotal = this.getSumTotal.bind(this);
     this.state = {
       products: {},
     }
@@ -41,21 +42,17 @@ class Menu extends React.Component {
     })
   }
 
-  getTotal(items, products, currentCurrencyDetails) {
-    if (!currentCurrencyDetails) return '';
-
+  getSumTotal(items, products, currentCurrencyDetails) {
     let totalAmount = 0;
-    let currencySymbol = '';
-  
-    // Set current symbol
-    currencySymbol = currentCurrencyDetails.symbol;
 
-    // Set current amount
+    if (!currentCurrencyDetails) return totalAmount;
+
     function getPriceInCurrentCurrency(prices, currentCurrencyDetails) {
       const _priceInCurrentFormat = prices.filter((price) => price.currency.label === currentCurrencyDetails.label);
       return _priceInCurrentFormat[0];
     }
-    
+
+    // Calculate the sum
     for(let i = 0; i < items.length; i++) {
       const item = items[i];
       const product = products[item.id];
@@ -68,11 +65,18 @@ class Menu extends React.Component {
       totalAmount = Math.round(totalAmount * 100)/100;
     }
     
-    return `${currencySymbol}${totalAmount}`;
+    return totalAmount;
+  }
+
+  getTaxAmount(total, taxPercent) {
+    const taxAmount = ( taxPercent * total ) / 100;
+    return Math.round(taxAmount * 100)/100;
   }
 
   componentDidMount() {
-    this.udpateCartItems(this.props.normalisedCart);
+    const { normalisedCart, currencyContext } = this.props;
+    this.udpateCartItems(normalisedCart);
+    if (!currencyContext.currency) currencyContext.loadCurrencies();
   }
 
   componentDidUpdate(prevProps) {
@@ -87,6 +91,11 @@ class Menu extends React.Component {
   render() {
     const { cart, normalisedCart, currencyContext } = this.props;
     const { products } = this.state;
+
+    const sumTotal = this.getSumTotal(normalisedCart, products, currencyContext.current);
+    const taxAmount = this.getTaxAmount(sumTotal, TAX_PERCENT);
+    const finalAmount = sumTotal + taxAmount;
+
     return(
       <div className="menu">
         <div className="heading">
@@ -111,7 +120,7 @@ class Menu extends React.Component {
         </div>
         <div className="total">
           <span>Total</span>
-          <span>{this.getTotal(normalisedCart, products, currencyContext.current)}</span>
+          <span>{currencyContext.current?.symbol}{finalAmount}</span>
         </div>
         <div className='buttons'>
           <button onClick={() => {this.props.history.push('/cart')}}>VIEW BAG</button>

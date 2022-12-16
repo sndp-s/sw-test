@@ -7,15 +7,23 @@
   top: 0;
   left: 0;
   right: 0;
-
+  
   &__content-wrapper {
     display: flex;
-    // TODO:FIX do the this properly 
-    // --split the space in 3 with flex properties to appropriately divide the space
     justify-content: space-between;
     align-items: center;
     
-    & > * { block-size: fit-content; } 
+    & > * { flex: 1; }
+
+    .center {
+      flex: 0;
+      .logo-wrapper, img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    .last { display:inline-flex; justify-content: flex-end; }
   }
 }
 

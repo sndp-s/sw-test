@@ -1,10 +1,7 @@
 import React from 'react';
-
 import "./Header.scss";
-
 import Navbar from '../../molecules/navbar/Navbar'
 import MenuList from '../../molecules/menu-list/MenuList';
-
 import logo from '../../../assets/img/logo.png';
 
 class Header extends React.Component {
@@ -14,10 +11,14 @@ class Header extends React.Component {
         <div className='container'>
           <div className='header__content-wrapper'>
             <Navbar />
-            <div className='logo-wrapper'>
-              <img src={logo} alt='logo' />
+            <div className="center">
+              <div className='logo-wrapper'>
+                <img src={logo} alt='logo' />
+              </div>
             </div>
-            <MenuList />
+            <div className='last'>
+              <MenuList />
+            </div>
           </div>
         </div>
       </div>

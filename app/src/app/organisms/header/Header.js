@@ -26,10 +26,4 @@ class Header extends React.Component {
   }
 }
 
-export class HeaderOffset extends React.Component {
-  render() {
-    return (<div className="Header-offset"/>);
-  }
-}
-
 export default Header;

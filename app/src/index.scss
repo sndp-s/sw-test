@@ -21,14 +21,18 @@ html { font-size: 16px }
     padding-top: var(--navbar-offset);
   }
 
-  // font size
+  // font-families
+  --ff-primary: 'Raleway', sans-serif;
+  --ff-secondary: 'Roboto', sans-serif;
+
+  // font-sizes
   --fs-xs: 14px; 
   --fs-s: 16px; 
   --fs-m: 18px; 
   --fs-l: 24px;
   --fs-xl: 30px;
 
-  // font weight
+  // font-weights
   --fw-b: 700;
 
   // colors
@@ -38,4 +42,5 @@ html { font-size: 16px }
 
   // defaults
   color: var(--black);
+  font-family: var(--ff-primary);
 }

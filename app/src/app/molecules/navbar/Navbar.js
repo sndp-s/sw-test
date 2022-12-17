@@ -1,5 +1,6 @@
 import React from 'react';
 import './Navbar.scss';
+import Text from '../../atoms/Text/Text';
 import { withRouter } from 'react-router-dom';
 import CategoryContext from '../../state/contexts/CategoryContext';
 
@@ -36,7 +37,7 @@ class Navbar extends React.Component {
               onClick={(e) => this.handleCategoryClick(e, c.name)}
               className='category-button'
             >
-              <span className='category-name'>{c.name.toUpperCase()}</span>
+              <Text span size='s' className='category-name'>{c.name.toUpperCase()}</Text>
             </button>
           </li>
         ))}

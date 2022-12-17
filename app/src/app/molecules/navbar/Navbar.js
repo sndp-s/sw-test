@@ -1,6 +1,5 @@
 import React from 'react';
 import './Navbar.scss';
-
 import { withRouter } from 'react-router-dom';
 import CategoryContext from '../../state/contexts/CategoryContext';
 
@@ -27,17 +26,17 @@ class Navbar extends React.Component {
     if (categories === null) return <div/>;
 
     return (
-      <ul className='list' >
+      <ul className='category-list' >
         {categories.map((c) => (
           <li
             key={c.name}
-            className='list-item'
+            className='category-item'
           >
             <button
               onClick={(e) => this.handleCategoryClick(e, c.name)}
-              className='list-item__content'
+              className='category-button'
             >
-              <span className='list-item__content__text'>{c.name}</span>
+              <span className='category-name'>{c.name.toUpperCase()}</span>
             </button>
           </li>
         ))}

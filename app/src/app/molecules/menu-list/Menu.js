@@ -74,9 +74,8 @@ class Menu extends React.Component {
   }
 
   componentDidMount() {
-    const { normalisedCart, currencyContext } = this.props;
+    const { normalisedCart } = this.props;
     this.udpateCartItems(normalisedCart);
-    if (!currencyContext.currency) currencyContext.loadCurrencies();
   }
 
   componentDidUpdate(prevProps) {

@@ -1,7 +1,7 @@
 @use '../../../index.scss';
 
 .header {
-  background: var(--white);
+  background: var(--color-white);
   position: Fixed;
   z-index: 100;
   top: 0;
@@ -11,18 +11,21 @@
   &__content-wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    
+    align-items: center; 
     & > * { flex: 1; }
 
     .center {
       flex: 0;
+      
       .logo-wrapper, img {
         width: 30px;
         height: 30px;
       }
     }
 
-    .last { display:inline-flex; justify-content: flex-end; }
+    .last {
+      display:inline-flex;
+      justify-content: flex-end;
+    }
   }
 }

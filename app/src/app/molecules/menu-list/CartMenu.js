@@ -37,10 +37,11 @@ class CartMenu extends React.Component {
         isOpen={this.state.isOpen}
         onClose={this.onClose}
         render={<Menu/>}
+        renderPosition='bottom-left'
       >
         <button className='head' onClick={this.handleOnToggle}>
           <img src={EmptyCartBlack} alt="cart icon" />
-          <p className="cart-item-count">{cart.length ?? 0}</p>
+          {/* <p className="cart-item-count">{cart.length ?? 0}</p> */}
         </button>
       </Dropdown>
     );

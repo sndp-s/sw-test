@@ -1,8 +1,10 @@
 import React from 'react';
 import './CurrencyMenu.scss';
 
+import Text from '../../atoms/Text/Text';
 import Dropdown from '../../atoms/Dropdown/Dropdown';
 import CurrencyContext from '../../state/contexts/CurrencyContext'; 
+import DownArrow from '../../../assets/down-arrow.svg';
 
 class CurrencyMenu extends React.Component {
 
@@ -10,11 +12,10 @@ class CurrencyMenu extends React.Component {
   
   constructor() {
     super();
-    this.onClose = this.onClose.bind(this);
-    this.handleOnToggle = this.handleOnToggle.bind(this);
-    this.state = {
-      isOpen: false,
-    }
+    this.closeMenu = this.closeMenu.bind(this);
+    this.toggleMenu = this.toggleMenu.bind(this);
+    this.handleCurrencySelect = this.handleCurrencySelect.bind(this);
+    this.state = { isOpen: false }
   }
 
   componentDidMount() {
@@ -23,21 +24,17 @@ class CurrencyMenu extends React.Component {
     }
   }
 
-  onClose(e) {
-    this.setState({
-      isOpen: false
-    })
+  closeMenu(e) {
+    this.setState({ isOpen: false});
   }
 
-  handleOnToggle(e) {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    }) 
+  toggleMenu(e) {
+    this.setState((_state) => ({ isOpen: !_state.isOpen })) 
   }
 
-  handleOnClick(e, c) {
-    const { label, symbol } = c;
-    this.context.changeCurrentCurrency({ label, symbol });
+  handleCurrencySelect(currency) {
+    this.context.changeCurrentCurrency(currency);
+    this.closeMenu();
   }
   
   render() {
@@ -48,17 +45,19 @@ class CurrencyMenu extends React.Component {
     return (
       <Dropdown
         isOpen={this.state.isOpen}
-        onClose={this.onClose}
+        onClose={this.closeMenu}
         render={(
           <ul className='dd-menu'>
             {currencies.map((c) => (
               <li 
                 className='dd-menu__item'
                 key={c.label}
-                onClick={(e) => this.handleOnClick(e, c)}
+                onClick={(evt) => {
+                  evt.stopPropagation();
+                  this.handleCurrencySelect(c);
+                }}
               >
-                <span>{c.symbol}</span>
-                <span>{c.label}</span>
+                <Text size='m'>{c.symbol}{' '}{c.label}</Text>
               </li>
             ))}
           </ul>
@@ -66,11 +65,14 @@ class CurrencyMenu extends React.Component {
       >
         <button
           className='dd-head'
-          onClick={this.handleOnToggle}
+          onClick={this.toggleMenu}
         >
-          <span>
-            {current ? current?.symbol : ''}
-          </span>
+          <Text span size='m'>{current ? current.symbol : ''}</Text>
+          <img
+            src={DownArrow}
+            alt='down arrow'
+            style={this.state.isOpen ? { transform: 'rotate(180deg)' } : {}}
+          />
         </button>
       </Dropdown>
     );
@@ -78,9 +80,3 @@ class CurrencyMenu extends React.Component {
 }
 
 export default CurrencyMenu;
-
-/**
- * fix style
- * fix positioning
- * add onClickOutside => Close();
-*/

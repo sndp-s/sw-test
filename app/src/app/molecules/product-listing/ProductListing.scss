@@ -1,7 +1,7 @@
 .listing {
   border:1px solid black;
   padding: 1rem;
-  background: var(--white);
+  background: var(--color-white);
   cursor: pointer;
   position: relative;
 
@@ -15,7 +15,7 @@
 
   & > .img-wrapper {
     border:1px solid red;
-    background: var(--white);
+    background: var(--color-white);
     overflow: hidden;
     // position: relative;
 

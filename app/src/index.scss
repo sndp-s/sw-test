@@ -28,7 +28,7 @@ html { font-size: 16px }
   // font-sizes
   --fs-xs: 14px; 
   --fs-s: 16px; 
-  --fs-m: 18px; 
+  --fs-m: 18px;
   --fs-l: 24px;
   --fs-xl: 30px;
 
@@ -36,11 +36,12 @@ html { font-size: 16px }
   --fw-b: 700;
 
   // colors
-  --black: #1D1F22;
-  --white: #FFFFFF;
-  --green: #5ECE7B;
+  --color-black: #1D1F22;
+  --color-white: #FFFFFF;
+  --color-green: #5ECE7B;
+  --color-modal: rgba(57, 55, 72, 0.22);
 
   // defaults
-  color: var(--black);
+  color: var(--color-black);
   font-family: var(--ff-primary);
 }

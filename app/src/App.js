@@ -1,7 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.scss';
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from './app/organisms/header/Header';
 import ProductListingPage from './app/organisms/product-listing-page/ProductListingPage';
 import ProductDisplayPage from './app/organisms/product-display-page/ProductDisplayPage';

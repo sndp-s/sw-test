@@ -29,8 +29,8 @@
   }
 
   &--text--chosen {
-    background: var(--black);
-    color: var(--white);
+    background: var(--color-black);
+    color: var(--color-white);
   }
 
   &--swatch {
@@ -47,7 +47,7 @@
   }
 
   &--swatch--chosen {
-    box-shadow: 0 0 0 1px #fff, 0 0 0 2px var(--green);
+    box-shadow: 0 0 0 1px #fff, 0 0 0 2px var(--color-green);
   }
 
 }

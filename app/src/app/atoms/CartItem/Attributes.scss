@@ -1,0 +1,53 @@
+.attributes {
+  border: 1px solid black;
+}
+
+.attribute {
+  margin-bottom: 8px;
+
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+  };
+}
+
+
+.item {
+  border: 1px solid black;
+  margin-right: 8px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &--text {
+    padding: 0 2px;
+  }
+
+  &--text--chosen {
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+
+  &--swatch {
+    &--s {
+      width: 16px;
+      height: 16px;
+      aspect-ratio: 1/1;
+    }
+
+    &--m {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  &--swatch--chosen {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 2px var(--color-green);
+  }
+
+}

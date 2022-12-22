@@ -1,13 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.scss";
+import App from "./App";
+import CurrencyProvider from "./app/state/providers/CurrencyProvider";
+import CategoryProvider from "./app/state/providers/CategoryProvider";
+import ProductProvider from "./app/state/providers/ProductProvider";
+import CartProvider from "./app/state/providers/CartProvider";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <CartProvider>
+      <ProductProvider>
+        <CategoryProvider>
+          <CurrencyProvider>
+            <App />
+          </CurrencyProvider>
+        </CategoryProvider>
+      </ProductProvider>
+    </CartProvider>
   </React.StrictMode>
 );
 

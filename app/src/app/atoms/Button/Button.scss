@@ -1,0 +1,20 @@
+.btn {
+  background: var(--color-white);
+  padding: 0;
+  border: none;
+  
+  &--color-green {
+    background: var(--color-white);
+  }
+  &--color-white {
+    background: var(--color-white);
+  }
+
+  &--m {
+    width: 140px;
+  }
+  &--l {
+    
+  }
+
+}

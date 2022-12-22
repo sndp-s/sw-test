@@ -1,0 +1,28 @@
+.scrollview {
+  width: 100%;
+  height: 100%;
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #39374838; 
+    border-radius: 10px;
+  }
+
+  // hide scrollbar
+  &--hide-scroll {
+    &::-webkit-scrollbar { display: none; }
+  }
+  
+  &--h { overflow-x: scroll; }
+  &--v { overflow-y: scroll; }
+}

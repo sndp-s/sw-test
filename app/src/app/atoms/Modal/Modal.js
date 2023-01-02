@@ -18,8 +18,8 @@ class Modal extends React.Component {
       
       const { skipCloseOnElmRef } = this.props;
       if (
-        skipCloseOnElmRef
-        && skipCloseOnElmRef.contains(evt.target)
+        skipCloseOnElmRef.current
+        && skipCloseOnElmRef.current.contains(evt.target)
       ) return;
 
       this.props.onClose();

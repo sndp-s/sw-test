@@ -1,11 +1,11 @@
 import React from 'react';
-import './CartMenu.scss';
+import './CartDropdown.scss';
 import EmptyCartBlack from '../../../assets/outlined/empty-cart-black.svg';
 import Dropdown from '../../atoms/Dropdown/Dropdown';
 import CartContext from '../../state/contexts/CartContext';
 import Menu from './Menu';
 
-class CartMenu extends React.Component {
+class CartDropdown extends React.Component {
   static contextType = CartContext;
 
   constructor() {
@@ -48,4 +48,4 @@ class CartMenu extends React.Component {
   }
 }
 
-export default CartMenu;
+export default CartDropdown;

@@ -2,6 +2,7 @@ import React from "react";
 import './CartMenu.scss';
 import ScrollView from '../../atoms/ScrollView/ScrollView';
 import CartItem from '../../atoms/CartItem/CartItem';
+import Text from "../../atoms/Text/Text";
 import client from "../../client";
 import { withRouter } from "react-router-dom";
 import { withCart } from "../../state/providers/CartProvider";
@@ -98,7 +99,7 @@ class Menu extends React.Component {
     return(
       <div className="menu">
         <div className="heading">
-          <p className="heading__text">My Bag, {cart.length ?? 0} items</p>
+          <Text weight={500}><Text span weight={700}>My Bag,</Text> {cart.length ?? 0} items</Text>
         </div>
         {(normalisedCart.length > 0) ? (
             <div className="product-list">

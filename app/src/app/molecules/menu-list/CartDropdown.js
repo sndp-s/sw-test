@@ -3,7 +3,7 @@ import './CartDropdown.scss';
 import EmptyCartBlack from '../../../assets/outlined/empty-cart-black.svg';
 import Dropdown from '../../atoms/Dropdown/Dropdown';
 import CartContext from '../../state/contexts/CartContext';
-import Menu from './Menu';
+import Menu from './CartMenu';
 
 class CartDropdown extends React.Component {
   static contextType = CartContext;

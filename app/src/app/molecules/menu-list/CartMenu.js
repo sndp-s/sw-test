@@ -1,5 +1,5 @@
 import React from "react";
-import './Menu.scss';
+import './CartMenu.scss';
 import ScrollView from '../../atoms/ScrollView/ScrollView';
 import CartItem from '../../atoms/CartItem/CartItem';
 import client from "../../client";

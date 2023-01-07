@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './MenuList.scss';
 
 import CurrencyDropdown from './CurrencyDropdown';

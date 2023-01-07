@@ -1,3 +1,18 @@
+.menu {
+  background: var(--color-white);
+  width: 339px;
+  // height: 677px;
+  padding: 32px 16px;
+}
+
+.heading {
+  margin-bottom: 32px;
+}
+
+.product-list {
+  max-height: 420px;
+}
+
 .total {
   display: flex;
   justify-content: space-between;

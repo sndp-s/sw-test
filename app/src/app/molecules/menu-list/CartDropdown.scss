@@ -1,17 +1,23 @@
-.head { display: flex;  border: none; background: var(--color-white); }
-
-.menu {
+.head {
+  display: flex; 
+  border: none;
   background: var(--color-white);
-  width: 339px;
-  height: 677px;
-  padding: 32px 16px;
-  border: 1px solid black;
+}
 
-  .heading {
-    margin-bottom: 32px;
-  }
-
-  .product-list {
-    height: 420px;
+.head__content {
+  position: relative;
+  &__cart-count {
+    position: absolute;
+    top: -40%;
+    right: -60%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    background-color: var(--color-black);
+    color: var(--color-white);
   }
 }

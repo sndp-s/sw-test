@@ -4,6 +4,8 @@ import EmptyCartBlack from '../../../assets/outlined/empty-cart-black.svg';
 import Dropdown from '../../atoms/Dropdown/Dropdown';
 import CartContext from '../../state/contexts/CartContext';
 import Menu from './CartMenu';
+import Text from '../../atoms/Text/Text';
+import BlackDotImg from '../../../assets/filled/black-dot.png';
 
 class CartDropdown extends React.Component {
   static contextType = CartContext;
@@ -40,8 +42,16 @@ class CartDropdown extends React.Component {
         renderPosition='bottom-left'
       >
         <button className='head' onClick={this.handleOnToggle}>
-          <img src={EmptyCartBlack} alt="cart icon" />
-          {/* <p className="cart-item-count">{cart.length ?? 0}</p> */}
+          <div className="head__content">
+            <img src={EmptyCartBlack} alt="cart icon" />
+            <Text
+              className="head__content__cart-count"
+              size='xs'
+              span
+            >
+              {cart.length ?? 0}
+            </Text>
+          </div>
         </button>
       </Dropdown>
     );

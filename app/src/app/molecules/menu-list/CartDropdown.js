@@ -47,6 +47,7 @@ class CartDropdown extends React.Component {
             <Text
               className="head__content__cart-count"
               size='xs'
+              weight={700}
               span
             >
               {cart.length ?? 0}

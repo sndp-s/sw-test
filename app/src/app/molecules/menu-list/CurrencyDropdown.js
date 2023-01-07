@@ -1,12 +1,12 @@
 import React from 'react';
-import './CurrencyMenu.scss';
+import './CurrencyDropdown.scss';
 
 import Text from '../../atoms/Text/Text';
 import Dropdown from '../../atoms/Dropdown/Dropdown';
 import CurrencyContext from '../../state/contexts/CurrencyContext'; 
 import DownArrow from '../../../assets/down-arrow.svg';
 
-class CurrencyMenu extends React.Component {
+class CurrencyDropdown extends React.Component {
 
   static contextType = CurrencyContext;
   
@@ -79,4 +79,4 @@ class CurrencyMenu extends React.Component {
   }
 }
 
-export default CurrencyMenu;
+export default CurrencyDropdown;

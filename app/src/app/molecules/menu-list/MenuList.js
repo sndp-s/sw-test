@@ -2,14 +2,14 @@ import React from 'react';
 
 import './MenuList.scss';
 
-import CurrencyMenu from './CurrencyMenu';
+import CurrencyDropdown from './CurrencyDropdown';
 import CartDropdown from './CartDropdown';
 
 class MenuList extends React.Component {
   render(){
     return (
       <div className='list'>
-        <CurrencyMenu />
+        <CurrencyDropdown />
         <CartDropdown />
       </div>
     );

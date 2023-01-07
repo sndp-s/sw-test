@@ -101,25 +101,25 @@ class Menu extends React.Component {
         <div className="heading">
           <Text weight={500}><Text span weight={700}>My Bag,</Text> {cart.length ?? 0} items</Text>
         </div>
-        {(normalisedCart.length > 0) ? (
-            <div className="product-list">
-              <ScrollView hideScroll>
-                {
-                  normalisedCart.map((item, index) => {
-                    const product = this.state.products[item.id];
-                    if (!product) return null;
-                    return(
-                      <CartItem
-                        item={item}
-                        product={product}
-                        key={index}
-                      />
-                    );
-                  })
-                }
-              </ScrollView>
-          </div>
-        ) : null}
+        <div className="product-list">
+          {(normalisedCart.length > 0) ? (
+            <ScrollView hideScroll>
+              {
+                normalisedCart.map((item, index) => {
+                  const product = this.state.products[item.id];
+                  if (!product) return null;
+                  return(
+                    <CartItem
+                      item={item}
+                      product={product}
+                      key={index}
+                    />
+                  );
+                })
+              }
+            </ScrollView>
+          ) : null}
+        </div>
         <div className="total">
           <span>Total</span>
           <span>{currencyContext.current?.symbol}{finalAmount}</span>

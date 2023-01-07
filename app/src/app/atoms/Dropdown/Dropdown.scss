@@ -1,3 +1,7 @@
 .dd {
-  position: relative
+  position: relative;
+  
+  &__content--wrapper {
+    width: fit-content;
+  }
 }

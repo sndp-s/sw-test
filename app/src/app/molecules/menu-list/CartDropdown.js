@@ -38,7 +38,7 @@ class CartDropdown extends React.Component {
       <Dropdown
         isOpen={this.state.isOpen}
         onClose={this.onClose}
-        render={<Menu/>}
+        render={<Menu onClose={this.onClose}/>}
         renderPosition='bottom-left'
       >
         <button className='head' onClick={this.handleOnToggle}>

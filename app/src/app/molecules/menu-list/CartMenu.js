@@ -3,6 +3,7 @@ import './CartMenu.scss';
 import ScrollView from '../../atoms/ScrollView/ScrollView';
 import CartItem from '../../atoms/CartItem/CartItem';
 import Text from "../../atoms/Text/Text";
+import Button from "../../atoms/Button/Button";
 import client from "../../client";
 import { withRouter } from "react-router-dom";
 import { withCart } from "../../state/providers/CartProvider";
@@ -54,24 +55,23 @@ class Menu extends React.Component {
     }
 
     // Calculate the sum
-    for(let i = 0; i < items.length; i++) {
+    for (let i = 0; i < items.length; i++) {
       const item = items[i];
       const product = products[item.id];
       if (!product) {
-        totalAmount = '';
+        totalAmount = 0;
         break;
       }
       const priceInCurrentFormat = getPriceInCurrentCurrency(product.prices, currentCurrencyDetails);
       if (priceInCurrentFormat) totalAmount += (priceInCurrentFormat.amount * item.count);
-      totalAmount = Math.round(totalAmount * 100)/100;
     }
     
-    return totalAmount;
+    return parseFloat(totalAmount.toFixed(2));
   }
 
   getTaxAmount(total, taxPercent) {
     const taxAmount = ( taxPercent * total ) / 100;
-    return Math.round(taxAmount * 100)/100;
+    return parseFloat(taxAmount.toFixed(2));
   }
 
   componentDidMount() {
@@ -89,12 +89,12 @@ class Menu extends React.Component {
   }
 
   render() {
-    const { cart, normalisedCart, currencyContext } = this.props;
+    const { cart, normalisedCart, currencyContext, onClose } = this.props;
     const { products } = this.state;
 
     const sumTotal = this.getSumTotal(normalisedCart, products, currencyContext.current);
     const taxAmount = this.getTaxAmount(sumTotal, TAX_PERCENT);
-    const finalAmount = sumTotal + taxAmount;
+    const finalAmount = parseFloat((sumTotal + taxAmount).toFixed(2));
 
     return(
       <div className="menu">
@@ -121,12 +121,35 @@ class Menu extends React.Component {
           ) : null}
         </div>
         <div className="total">
-          <span>Total</span>
-          <span>{currencyContext.current?.symbol}{finalAmount}</span>
+          <Text weight={700}>Total</Text>
+          <Text weight={700}>{currencyContext.current?.symbol}{finalAmount}</Text>
         </div>
         <div className='buttons'>
-          <button onClick={() => {this.props.history.push('/cart')}}>VIEW BAG</button>
-          <button onClick={() => console.log('Checking out...')}>CHECK OUT</button>
+          <Button
+            onClick={() => {
+              this.props.history.push('/cart');
+              onClose();
+            }}
+            className="button --bg-white --color-black --border-black"
+          >
+            <Text
+              weight={600}
+              size='xs'
+            >
+              VIEW BAG
+            </Text>
+          </Button>
+          <Button
+            onClick={() => console.log('Checking out...')}
+            className="button --bg-green --color-white"
+          >
+            <Text
+              size='xs'
+              weight={600}
+            >
+              CHECK OUT
+            </Text>
+          </Button>
         </div>
       </div>
     );

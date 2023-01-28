@@ -8,6 +8,7 @@ class Modal extends React.Component {
     super();
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
     this.modalRef = createRef();
+    this.contentRef = createRef();
   }
 
   handleOutsideClick(evt) {
@@ -19,8 +20,12 @@ class Modal extends React.Component {
       const { skipCloseOnElmRef } = this.props;
       if ((skipCloseOnElmRef.current
         && skipCloseOnElmRef.current.contains(evt.target))
+        || (
+          this.contentRef.current
+          && this.contentRef.current.contains(evt.target)
+        )
       ) return;
-      
+
       this.props.onClose();
     }
   }
@@ -44,7 +49,7 @@ class Modal extends React.Component {
     return (
       <div
         ref={this.modalRef}
-        onClick={onClose}
+        onClick={() => { console.log('DEBUG'); onClose(); }}
         className={overlayClasses.join(' ')}
         style={overlayStyle}
       >
@@ -52,6 +57,8 @@ class Modal extends React.Component {
           <div
             className="modal-content"
             style={contentStyle}
+            ref={this.contentRef}
+            onClick={(evt) =>{ evt.stopPropagation(); }}
           >
             {children}
           </div>

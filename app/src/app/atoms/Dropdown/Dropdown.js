@@ -5,24 +5,23 @@ import { getEventCoords } from '../../utils';
 import Modal from '../Modal/Modal';
 
 class Dropdown extends React.Component {
-  state = { ddHeadWrapperRef: createRef() };
+  ddHeadWrapperRef = createRef();
+  // ddContentWrapperRef = createRef();
 
   render() {
     const { children, render, renderPosition, onClose, isOpen } = this.props;
-    const { ddHeadWrapperRef } = this.state;
-
     const contentStyle = {};
     switch (renderPosition) {
       case 'bottom-left': {
-        if (ddHeadWrapperRef.current) {
-          const coords = ddHeadWrapperRef.current.getBoundingClientRect();
+        if (this.ddHeadWrapperRef.current) {
+          const coords = this.ddHeadWrapperRef.current.getBoundingClientRect();
           contentStyle.transform = `translateX(calc(${coords.x}px - 100% + ${coords.width}px))`;
         }
         break;
       }
       case 'bottom-right': {
-        if (ddHeadWrapperRef.current) {
-          const coords = ddHeadWrapperRef.current.getBoundingClientRect();
+        if (this.ddHeadWrapperRef.current) {
+          const coords = this.ddHeadWrapperRef.current.getBoundingClientRect();
           contentStyle.transform = `translateX(${coords.x}px)`;        
         }
         break;
@@ -34,16 +33,17 @@ class Dropdown extends React.Component {
       <div className="dd">
         <div
           className="dd__head--wrapper"
-          ref={this.state.ddHeadWrapperRef}
+          ref={this.ddHeadWrapperRef}
         >
           {children}
         </div>
         <Modal
           open={isOpen}
           onClose={onClose}
-          overlayStyle={{ top: 'var(--navbar-offset)' }}
           disableContentCenter
-          skipCloseOnElmRef={this.state.ddHeadWrapperRef}
+          // ref={this.ddContentWrapperRef}
+          overlayStyle={{ top: 'var(--navbar-offset)' }}
+          skipCloseOnElmRef={this.ddHeadWrapperRef}
         >
           <div
             className='dd__content--wrapper'

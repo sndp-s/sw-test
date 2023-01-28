@@ -1,4 +1,4 @@
-import React from 'react';
+  import React from 'react';
 import './CurrencyDropdown.scss';
 
 import Text from '../../atoms/Text/Text';
@@ -52,12 +52,9 @@ class CurrencyDropdown extends React.Component {
               <li 
                 className='dd-menu__item'
                 key={c.label}
-                onClick={(evt) => {
-                  evt.stopPropagation();
-                  this.handleCurrencySelect(c);
-                }}
+                onClick={(evt) => { this.handleCurrencySelect(c); }}
               >
-                <Text size='m'>{c.symbol}{' '}{c.label}</Text>
+                <Text size='m' weight={500}>{c.symbol}{' '}{c.label}</Text>
               </li>
             ))}
           </ul>

@@ -32,9 +32,6 @@ html { font-size: 16px }
   --fs-l: 24px;
   --fs-xl: 30px;
 
-  // font-weights
-  --fw-b: 700;
-
   // colors
   --color-black: #1D1F22;
   --color-white: #FFFFFF;
@@ -44,4 +41,27 @@ html { font-size: 16px }
   // defaults
   color: var(--color-black);
   font-family: var(--ff-primary);
+
+  // custom classes:
+  // background-color
+  .--bg-green {
+    background-color: var(--color-green);
+  }
+  .--bg-white {
+    background-color: var(--color-white);
+  }
+  // color
+  .--color-black {
+    color: var(--color-black);
+  }
+  .--color-green {
+    color: var(--color-green);
+  }
+  .--color-white {
+    color: var(--color-white);
+  }
+  // border
+  .--border-black {
+    border: 1px solid black;
+  }
 }

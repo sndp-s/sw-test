@@ -16,13 +16,14 @@
 .total {
   display: flex;
   justify-content: space-between;
-
-  span {
-    font-weight: var(--fw-b);
-  }
+  margin-bottom: 32px;
 }
 
 .buttons {
   display: flex;
   justify-content: space-between;
+
+  .button {
+    padding: 13px 36px;
+  }
 }

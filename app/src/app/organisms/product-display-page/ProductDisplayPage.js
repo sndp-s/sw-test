@@ -101,7 +101,7 @@ class ProductDisplayPage extends React.Component {
         <div className="lefthandside">
           <div className="lefthandside__gallery">
             <div className="lefthandside__gallery__img-list--wrap">
-              <ScrollView hidescroll>
+              <ScrollView hideScroll>
                 <ul className="lefthandside__gallery__img-list">
                   {product.gallery.map((url, index) => (
                     <li key={index} onClick={(ev) => { this.handleImgClick(index) }}>

@@ -119,24 +119,30 @@ class ProductDisplayPage extends React.Component {
           </div>
         </div>
         <div className="righthandside">
-          <Text size='l'>{product.brand}</Text>
-          <Text size='l'>{product.name}</Text>
+          <Text size='xl' weight={600} className="righthandside__brand">{product.brand}</Text>
+          <Text size='xl' className="righthandside__product">{product.name}</Text>
           <Attributes
             attributes={product.attributes}
             chosenAttributes={this.state.chosenAttributes}
             onSelectionChange={this.handleOnSelectionChange}
             enableSelectionChange
+            className="righthandside__attributes"
             size="m"
           />
-          <Price prices={product.prices} size='l'/>
+          <Price
+            prices={product.prices}
+            size='l'
+            weight={700}
+            className="righthandside__price"
+          />
           {product.inStock ? (
             <button
               className='righthandside__add-to-cart'
               onClick={this.handleAddToCart}
             >
-              <p className='righthandside__add-to-cart__text'>ADD TO CART</p>
+              <Text className='righthandside__add-to-cart__text' size="s">ADD TO CART</Text>
             </button>
-          ) : <p>OUT OF STOCK!</p>}
+          ) : <Text>OUT OF STOCK!</Text>}
           <div>
             {parse(product.description)}
           </div>

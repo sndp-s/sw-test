@@ -3,17 +3,13 @@
   padding-top: 80px;
   padding-bottom: 80px;
 }
-
 .lefthandside {
-  // border: 1px solid black;
   margin-right: 100px;
   &__gallery {
-    // border: 1px solid blue;
     display: flex;
     
     &__img-list {
       &--wrap {
-        // width: 186px;
         height: 600px;
         margin-right: 40px;
       }
@@ -23,7 +19,6 @@
         cursor: pointer;
         margin-bottom: 32px;
       }
-
       li:last-child {
         margin-bottom: 0;
       }
@@ -34,11 +29,9 @@
         height: auto;
         object-fit: contain;
       }
-
     }
 
     &__main-view {
-      // border: 1px solid pink;
       width: 610px;
 
       .img-wrap {
@@ -57,8 +50,6 @@
 }
 .righthandside {
   width: 100%;
-
-
   &__brand { line-height: 160%; }
   &__product { line-height: 160%; margin-bottom: 43px; }
   &__attributes { margin-bottom: 38px; }

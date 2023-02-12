@@ -1,12 +1,12 @@
-.attributes {
-  border: 1px solid black;
-}
-
 .attribute {
   margin-bottom: 8px;
 
   :last-child {
     margin-bottom: 0;
+  }
+
+  &__name {
+    margin-bottom: 8px;
   }
 
   &__items {
@@ -17,7 +17,6 @@
 
 
 .item {
-  border: 1px solid black;
   margin-right: 8px;
 
   &:last-child {
@@ -25,9 +24,19 @@
   }
 
   &--text {
-    padding: 0 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-black);
+    &--s {
+      height: 24px;
+      width: 24px;
+    }
+    &--m {
+      height: 45px;
+      width: 63px;
+    }
   }
-
   &--text--chosen {
     background: var(--color-black);
     color: var(--color-white);
@@ -39,15 +48,13 @@
       height: 16px;
       aspect-ratio: 1/1;
     }
-
     &--m {
       width: 32px;
       height: 32px;
+      aspect-ratio: 1/1;
     }
   }
-
   &--swatch--chosen {
     box-shadow: 0 0 0 1px #fff, 0 0 0 2px var(--color-green);
   }
-
 }

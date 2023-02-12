@@ -7,8 +7,9 @@ class Item extends React.Component {
   render() {
     const renderTextItem = (item, classList, size, onItemSelect) => {
       let itemNameSize = '';
+      classList.push(`item--text--${size}`);
       switch(size) {
-        case 's': itemNameSize = 'xs';  break;
+        case 's': itemNameSize = 'xs';   break;
         case 'm': itemNameSize = 's';  break;
         default: itemNameSize = 'xs';
       }
@@ -26,12 +27,7 @@ class Item extends React.Component {
     }
   
     const renderSwatchItem = (item, classList, size, onItemSelect) => {
-      switch(size) {
-        case 's': classList.push('item--swatch--s');  break;
-        case 'm': classList.push('item--swatch--m');  break;
-        default: classList.push('item--swatch--s');
-      }
-
+      classList.push(`item--swatch--${size}`);
       return (
         <div
           className={classList.join(' ')}
@@ -104,16 +100,33 @@ class Attribute extends React.Component {
   render() {
     const { attribute, chosenAttribute, onSelectionChange, size } = this.props;
 
-    let attributeNameSize = ''
+    let attributeNameSize = '';
+    let attributeNameWeight = null;
     switch(size) {
-      case 's': attributeNameSize = 'xs'; break;
-      case 'm': attributeNameSize = 'm'; break;
-      default: attributeNameSize = 'xs';
+      case 's': {
+        attributeNameSize = 'xs';
+        attributeNameWeight = 400;
+        break;
+      }
+      case 'm': {
+        attributeNameSize = 'm';
+        attributeNameWeight = 700;
+        break;
+      }
+      default:
+        attributeNameSize = 'xs'
+        attributeNameWeight = 400;
     }
 
     return (
       <div className='attribute'>
-        <Text size={attributeNameSize}>{attribute.name}{':'}</Text>
+        <Text
+          size={attributeNameSize}
+          weight={attributeNameWeight}
+          className="attribute__name"
+        >
+          {attribute.name}{':'}
+        </Text>
         <div className="attribute__items">
           {attribute.items.map((item) => {
             return (
@@ -171,11 +184,12 @@ class Attributes extends React.Component {
       chosenAttributes,
       enableSelectionChange,
       size,
-      onSelectionChange
+      onSelectionChange,
+      className
     } = this.props;
 
     return(
-      <div>
+      <div className={['attributes', className].join(' ')}>
         {attributes.map((attribute) => (
           <Attribute
             attribute={attribute}
@@ -195,6 +209,7 @@ Attributes.defaultProps = {
   onAttributeSelect: null,
   size: 's',
   enableSelectionChange: false,
+  className: '',
 }
 
 Attributes.propTypes = {
@@ -227,6 +242,7 @@ Attributes.propTypes = {
   onSelectionChange: PropTypes.func,
   enableSelectionChange: PropTypes.bool,
   size: PropTypes.oneOf(['s', 'm']), // s = small, m = medium
+  className: PropTypes.string,
 }
 
 export default Attributes;

@@ -55,14 +55,12 @@ class ProductListing extends React.Component {
           this.props.history.push('/product/' + product.id)
         }}
       >
-        <div className='img-wrapper'>
-          <img src={product.gallery[0]} alt={product.name} />
-        </div>
-        {product.inStock && (
-          <div className='add-to-cart-btn-wrapper'>
-            <AddToCart product={product}/>
+        <div className="img-and-btn-wrapper">
+          <div className='img-wrapper'>
+            <img src={product.gallery[0]} alt={product.name} />
           </div>
-        )}
+          {product.inStock && <AddToCart product={product}/>}
+        </div>
         <div className='details'>
           <div className='details__name'>{product.brand}{' '}{product.name}</div>
           <Price prices={product.prices} />

@@ -3,21 +3,23 @@
   padding: 1rem;
   background: var(--color-white);
   cursor: pointer;
-  position: relative;
 
   &:hover {
     box-shadow: 1px 1px 30px 10px rgba(1, 1, 1, 0.1);
   }
 
   &--out-of-stock {
+    position: relative;
     user-select: none;
   }
 
-  & > .img-wrapper {
-    border:1px solid red;
+  .img-and-btn-wrapper {
+    position: relative;
+  }
+
+  .img-wrapper {
     background: var(--color-white);
     overflow: hidden;
-    // position: relative;
 
     &, > img {
       max-width: 354px;
@@ -29,10 +31,14 @@
       object-fit: contain;
     }
   }
+  
+  .details {
+    margin-top: 24px;
+    line-height: 160%;
+  }
 
-  & > .out-of-stock-modal {
+  .out-of-stock-modal {
     position: absolute;
-    background: red;
     top: 0;
     left: 0;
     right: 0;
@@ -46,8 +52,15 @@
 
 
 .add-to-cart {
+  width: 52px;
+  height: 52px;
   background: #5ECE7B;
+  border-radius: 100%;
   border: none;
+  position: absolute;
+  right: 0;
+  transform: translate(-15px, -50%);
+
 
   &__image {
     width: 24px;

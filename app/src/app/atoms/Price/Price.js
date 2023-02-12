@@ -13,8 +13,8 @@ class Price extends React.Component {
   }
   
   render() {
-    const { currencies, current, className } = this.context;
-    const { prices, size } = this.props;
+    const { currencies, current } = this.context;
+    const { prices, size, weight, className } = this.props;
 
     if (!currencies || !current || !prices) return <div />;
     
@@ -23,9 +23,9 @@ class Price extends React.Component {
     if (!price) return <div />;
 
     return (
-      <Text size={size}>
-        <Text span size={size}>{price.currency.symbol}</Text>
-        <Text span size={size}>{price.amount}</Text>
+      <Text size={size} weight={weight} className={className}>
+        <Text span size={size} weight={weight}>{price.currency.symbol}</Text>
+        <Text span size={size} weight={weight}>{price.amount}</Text>
       </Text>
     );
   }
@@ -34,6 +34,7 @@ class Price extends React.Component {
 Price.defaultProps = {
   size: 'm',
   className: '',
+  weight: 400,
 }
 
 Price.propTypes = {
@@ -48,6 +49,7 @@ Price.propTypes = {
   ).isRequired,
   size: PropTypes.oneOf(['m', 'l']),
   className: PropTypes.string,
+  weight: PropTypes.oneOf([300, 400, 500, 600, 700])
 }
 
 export default Price;

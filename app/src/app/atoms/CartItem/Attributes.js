@@ -102,24 +102,28 @@ class Attribute extends React.Component {
 
     let attributeNameSize = '';
     let attributeNameWeight = null;
+    const attributeClasses = ['attribute'];
     switch(size) {
       case 's': {
         attributeNameSize = 'xs';
         attributeNameWeight = 400;
+        attributeClasses.push('attribute--s');
         break;
       }
       case 'm': {
         attributeNameSize = 'm';
         attributeNameWeight = 700;
+        attributeClasses.push('attribute--m');
         break;
       }
       default:
         attributeNameSize = 'xs'
         attributeNameWeight = 400;
+        attributeClasses.push('attribute--s');
     }
 
     return (
-      <div className='attribute'>
+      <div className={attributeClasses.join(' ')}>
         <Text
           size={attributeNameSize}
           weight={attributeNameWeight}

@@ -1,8 +1,13 @@
 .attribute {
-  margin-bottom: 8px;
-
   :last-child {
     margin-bottom: 0;
+  }
+
+  &--s {
+    margin-bottom: 8px;
+  }
+  &--m {
+    margin-bottom: 24px;
   }
 
   &__name {

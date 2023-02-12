@@ -13,7 +13,7 @@ class Price extends React.Component {
   }
   
   render() {
-    const { currencies, current } = this.context;
+    const { currencies, current, className } = this.context;
     const { prices, size } = this.props;
 
     if (!currencies || !current || !prices) return <div />;
@@ -33,6 +33,7 @@ class Price extends React.Component {
 
 Price.defaultProps = {
   size: 'm',
+  className: '',
 }
 
 Price.propTypes = {
@@ -45,7 +46,8 @@ Price.propTypes = {
       amount: PropTypes.number,
     })
   ).isRequired,
-  size: PropTypes.oneOf(['m', 'l'])
+  size: PropTypes.oneOf(['m', 'l']),
+  className: PropTypes.string,
 }
 
 export default Price;

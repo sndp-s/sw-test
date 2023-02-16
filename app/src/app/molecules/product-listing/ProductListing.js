@@ -33,7 +33,10 @@ class AddToCart extends React.Component {
     return (
       <button
         className="add-to-cart"
-        onClick = {(evt) => { this.handleOnClick(product); }}
+        onClick = {(evt) => {
+          evt.stopPropagation();
+          this.handleOnClick(product);
+        }}
       >
         <img
           src={emptyCart}

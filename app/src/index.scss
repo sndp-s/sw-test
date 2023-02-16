@@ -19,6 +19,7 @@ html { font-size: 16px }
   .page--container {
     @extend .container;
     padding-top: var(--navbar-offset);
+    padding-bottom: 80px;
   }
 
   // font-families

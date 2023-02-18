@@ -101,11 +101,11 @@ class CartPage extends React.Component {
     const finalAmount = sumTotal + taxAmount;
 
     return(
-      <div>
-        <Text variant='h1' size='xl'>CART</Text>
+      <div className="cart-page">
+        <Text variant='h1' size='xl' className="cart-page__title">CART</Text>
         <div className="product-list">
           <ScrollView hideScroll>
-            {
+            { (normalisedCart.length > 0) ?
               normalisedCart.map((item, index) => {
                 const product = this.state.products[item.id];
                 if (!product) return null;
@@ -116,33 +116,37 @@ class CartPage extends React.Component {
                     key={index}
                   />
                 );
-              })
+              }) : <Text>Cart is empty</Text>
             }
           </ScrollView>
         </div>
-        <div className="total-breakup">
-          <table>
-            <tbody>
-              <tr>
-                <td><Text span>Tax {TAX_PERCENT}%</Text></td>
-                <td><Text span>{currencyContext.current?.symbol}{taxAmount}</Text></td>
-              </tr>
-              <tr>
-                <td><Text span>Quantity</Text></td>
-                <td><Text span>{cart.length}</Text></td>
-              </tr>
-              <tr>
-                <td><Text span>Total</Text></td>
-                <td>
-                  <Text span>
-                    {currencyContext.current?.symbol}{finalAmount}
-                  </Text>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <button><Text>ORDER</Text></button>
+        {(normalisedCart.length > 0) && (
+          <>
+            <div className="total-breakup">
+              <table>
+                <tbody>
+                  <tr>
+                    <td><Text span>Tax {TAX_PERCENT}%</Text></td>
+                    <td><Text span>{currencyContext.current?.symbol}{taxAmount}</Text></td>
+                  </tr>
+                  <tr>
+                    <td><Text span>Quantity</Text></td>
+                    <td><Text span>{cart.length}</Text></td>
+                  </tr>
+                  <tr>
+                    <td><Text span>Total</Text></td>
+                    <td>
+                      <Text span>
+                        {currencyContext.current?.symbol}{finalAmount}
+                      </Text>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <button><Text>ORDER</Text></button>
+          </>
+        )}
       </div>
     );
   }

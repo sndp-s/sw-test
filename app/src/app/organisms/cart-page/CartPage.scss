@@ -2,4 +2,29 @@
   &__title {
     margin: 80px 0;
   }
+
+  &__product-list {
+    margin-bottom: 32px;
+    height: 675px;
+  }
+
+  &__total-breakup {
+    margin-bottom: 20px;
+    
+    td {
+      padding-bottom: 8px;
+    }
+  }
+
+  &__add-to-cart {
+    width: 292px;
+    background: var(--color-green);
+    border: 0;
+    margin-bottom: 40px;
+
+    &__text {
+      color: var(--color-white);
+      line-height: 48px;
+    }
+  }
 }

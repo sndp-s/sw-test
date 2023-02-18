@@ -103,7 +103,7 @@ class CartPage extends React.Component {
     return(
       <div className="cart-page">
         <Text variant='h1' size='xl' className="cart-page__title">CART</Text>
-        <div className="product-list">
+        <div className="cart-page__product-list">
           <ScrollView hideScroll>
             { (normalisedCart.length > 0) ?
               normalisedCart.map((item, index) => {
@@ -114,6 +114,7 @@ class CartPage extends React.Component {
                     item={item}
                     product={product}
                     key={index}
+                    size="l"
                   />
                 );
               }) : <Text>Cart is empty</Text>
@@ -122,21 +123,21 @@ class CartPage extends React.Component {
         </div>
         {(normalisedCart.length > 0) && (
           <>
-            <div className="total-breakup">
+            <div className="cart-page__total-breakup">
               <table>
                 <tbody>
                   <tr>
-                    <td><Text span>Tax {TAX_PERCENT}%</Text></td>
-                    <td><Text span>{currencyContext.current?.symbol}{taxAmount}</Text></td>
+                    <td><Text span size="l">Tax {TAX_PERCENT}%:&nbsp;</Text></td>
+                    <td><Text span size="l" weight={700}>{currencyContext.current?.symbol}{taxAmount}</Text></td>
                   </tr>
                   <tr>
-                    <td><Text span>Quantity</Text></td>
-                    <td><Text span>{cart.length}</Text></td>
+                    <td><Text span size="l">Quantity:&nbsp;</Text></td>
+                    <td><Text span size="l" weight={700}>{cart.length}</Text></td>
                   </tr>
                   <tr>
-                    <td><Text span>Total</Text></td>
+                    <td><Text span size="l">Total:&nbsp;</Text></td>
                     <td>
-                      <Text span>
+                      <Text span size="l" weight={700}>
                         {currencyContext.current?.symbol}{finalAmount}
                       </Text>
                     </td>
@@ -144,7 +145,9 @@ class CartPage extends React.Component {
                 </tbody>
               </table>
             </div>
-            <button><Text>ORDER</Text></button>
+            <button className="cart-page__add-to-cart">
+              <Text className="cart-page__add-to-cart__text">ORDER</Text>
+            </button>
           </>
         )}
       </div>
